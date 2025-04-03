@@ -5,25 +5,33 @@
 #include <string.h>
 
 int main() {
-    FILE *op;
-    op = fopen("tema1.txt", "r");
-    int countTAB = 0, nr, id;
-    page *INPage;
-    char aux[256], URL[50], *description;
-    fgets(aux, sizeof(nr), op);
-    nr = atoi(aux);
-    INPage = (page *)malloc(nr * sizeof(page));
-    while (nr) {
+    char aux[256], operations[256][256];
+    FILE *op = fopen("tema1.txt", "r");
+    fgets(aux, sizeof(aux), op);
+    int nrpages = atoi(aux);
+    page Pages[nrpages];
+    for (int i = 0; i < nrpages; i++) {
         fgets(aux, sizeof(aux), op);
-        id = atoi(aux);
+        Pages[i].id = atoi(aux);
+
         fgets(aux, sizeof(aux), op);
-        strcpy(URL, aux);
+        aux[strlen(aux) - 1] = '\0';
+        strcpy(Pages[i].url, aux);
+
         fgets(aux, sizeof(aux), op);
-        description = aux;
-        strcpy(INPage->description, description);
-        INPage->id = id;  //  pastrez detaliile site-ului
-        strcpy(INPage->url, URL);
-        nr--;
+        aux[strlen(aux) - 1] = '\0';
+        Pages[i].description = (char *)malloc(strlen(aux) * (sizeof(char)));
+        strcpy(Pages[i].description, aux);
+    }
+    fgets(aux, sizeof(aux), op);
+    int nrop = atoi(aux);
+    for (int i = 0; i < nrop; i++) {
+        fgets(operations[i], sizeof(operations[i]), op);
+        operations[i][strlen(operations[i]) - 1] = '\0';
+    }
+    for (int i = 0; i < nrop; i++) {
+        if (!strcmp(operations[i], "NEW_TAB"))
+            NEW_TAB;
     }
     return 0;
 }

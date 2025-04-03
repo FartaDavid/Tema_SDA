@@ -1,4 +1,4 @@
-$CFLAGS = -Wall -Wextra -pedantic -std=c99
+$CFLAGS = -g -Wall -Wextra
 $CC = gcc
 
 build:
