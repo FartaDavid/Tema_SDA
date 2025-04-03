@@ -21,6 +21,7 @@ browser *HEAD(browser *BRW, browser *SANTINEL) {
     strcpy(BRW->current->currentPage->url, "https://acs.pub.ro");
     BRW->current->currentPage->description = (char *)malloc(desclen * sizeof(char));
     strcpy(BRW->current->currentPage->description, "Computer Science");
+    BRW->list->currentTab = BRW->current;
     return BRW;
 }
 
@@ -50,6 +51,7 @@ browser *NEW_TAB (browser *BRW, browser *SANTINEL, int k) {
     strcpy(NEWBRW->current->currentPage->url, "https://acs.pub.ro");
     NEWBRW->current->currentPage->description = (char *)malloc(desclen * sizeof(char));
     strcpy(NEWBRW->current->currentPage->description, "Computer Science");
+    NEWBRW->list->currentTab = NEWBRW->current;
     return NEWBRW;
 }
 

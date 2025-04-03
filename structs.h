@@ -30,6 +30,7 @@ typedef struct tab{
 typedef struct tabList{
     struct tabList *next;
     struct tabList *prev;
+    tab *currentTab;
 } tabList;
 
 typedef struct browser{
