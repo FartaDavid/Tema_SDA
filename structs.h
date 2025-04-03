@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define desclen 30
 
 typedef struct page{
     int id;
@@ -27,7 +28,6 @@ typedef struct tab{
 } tab;
 
 typedef struct tabList{
-    tab *current;
     struct tabList *next;
     struct tabList *prev;
 } tabList;
