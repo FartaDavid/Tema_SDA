@@ -8,14 +8,7 @@ University of Oxford
 3
 https://www.harvard.edu/
 Harvard University
-10
-NEW_TAB
-NEW_TAB
-NEW_TAB
-OPEN 2
-PRINT
-PREV
-PREV
-PREV
-NEXT
-PRINT
+3
+PAGE 3
+PAGE 2
+PRINT_HISTORY 0

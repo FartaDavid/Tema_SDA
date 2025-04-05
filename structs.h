@@ -12,13 +12,8 @@ typedef struct page{
 
 typedef struct stack{
     struct stack *Top;
-    page *data;
+    page *Page;
 } stack;
-
-// typedef struct stacknode{
-//     page data;
-//     stack *top;
-// } stacknode;
 
 typedef struct tab{
     int id;

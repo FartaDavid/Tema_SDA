@@ -6,7 +6,7 @@
 
 int main() {
     char aux[256], operations[256][256];
-    FILE *op = fopen("tema4.txt", "r");
+    FILE *op = fopen("tema5.txt", "r");
     fgets(aux, sizeof(aux), op);
     int nrpages = atoi(aux);
     page Pages[nrpages];
@@ -32,31 +32,31 @@ int main() {
     //  Pastrez operatiile ce trb facute intr-un vector de string-uri
     for (int i = 0; i < nrop; i++) {
         fgets(operations[i], sizeof(operations[i]), op);
-        operations[i][strlen(operations[i]) - 1] = '\0';
+        if (operations[i][strlen(operations[i]) - 1] == '\n')
+            operations[i][strlen(operations[i]) - 1] = '\0';
     }
     //  Incep sa initializez/aloc dinamic browserul si santinela
-    int k = 0, nr;
+    int k = 1, nr;
     browser *BRW = NULL, *SANTINEL = NULL;
-    SANTINEL = (browser *)malloc(sizeof(browser));
-    SANTINEL->list = (tabList *)malloc(sizeof(tabList));
-    SANTINEL->list->next = (tabList *)malloc(sizeof(tabList));
-    SANTINEL->list->prev = (tabList *)malloc(sizeof(tabList));
+    SANTINEL = ALOCARE(SANTINEL);
+    SANTINEL->current->id = -1;
     //  Incep operatiile
+    BRW = ALOCARE(BRW);
+    HEAD (BRW, SANTINEL);
     for (int i = 0; i < nrop; i++) {
         //  Fac un Tab nou
         if (!strcmp(operations[i], "NEW_TAB")) {
-            if (k == 0)
-                BRW = HEAD(BRW, SANTINEL);
-            else
-                BRW = NEW_TAB(BRW, SANTINEL, k);
+            BRW = NEW_TAB(BRW, SANTINEL, k);
             k++;
         }
         if (!strcmp(operations[i], "CLOSE")) {
-            if (k == 0)
+            k--;
+            if (k == 1) {
                 printf("403 Forbidden\n");
+                break;
+            }
             else {
                 BRW->list = CLOSE(BRW->list, SANTINEL);
-                k--;
             }
         }
         if (strstr(operations[i], "OPEN")) {
@@ -66,6 +66,17 @@ int main() {
             else
                 BRW = OPEN(BRW, nr, SANTINEL);
         }
+        if (!strcmp(operations[i], "PREV")) {
+            BRW = PREV(BRW, SANTINEL);
+        }
+        if (!strcmp(operations[i], "NEXT")) {
+            BRW = NEXT(BRW, SANTINEL);
+        }
+        if (strstr(operations[i], "PAGE")) {
+            CutNr(operations[i], &nr);
+            BRW = PAGE(BRW, Pages, nrpages, nr);
+        }
+        printf("%d %s\n", BRW->current->id, operations[i]);
     }
     return 0;
 }
