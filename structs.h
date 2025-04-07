@@ -12,6 +12,7 @@ typedef struct page{
 
 typedef struct stack{
     struct stack *Top;
+    struct stack *Bottom;
     page *Page;
 } stack;
 

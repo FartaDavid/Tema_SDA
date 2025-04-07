@@ -6,7 +6,7 @@
 
 int main() {
     char aux[256], operations[256][256];
-    FILE *op = fopen("tema5.txt", "r");
+    FILE *op = fopen("tema1.txt", "r");
     fgets(aux, sizeof(aux), op);
     int nrpages = atoi(aux);
     page Pages[nrpages];
@@ -42,9 +42,11 @@ int main() {
     SANTINEL->current->id = -1;
     //  Incep operatiile
     BRW = ALOCARE(BRW);
-    HEAD (BRW, SANTINEL);
+    BRW = HEAD (BRW, SANTINEL);
     for (int i = 0; i < nrop; i++) {
-        //  Fac un Tab nou
+        //  Fac un Tab nou  
+        // printf("%d %s\n", BRW->current->id, operations[i]);
+        // printf("%s\n\n", BRW->current->currentPage->url);
         if (!strcmp(operations[i], "NEW_TAB")) {
             BRW = NEW_TAB(BRW, SANTINEL, k);
             k++;
@@ -74,9 +76,24 @@ int main() {
         }
         if (strstr(operations[i], "PAGE")) {
             CutNr(operations[i], &nr);
-            BRW = PAGE(BRW, Pages, nrpages, nr);
+            BRW->current->backwardStack = PAGE(BRW, Pages, nrpages, nr);
+            // printf("%s\n", BRW->current->backwardStack->Page->description);
         }
-        printf("%d %s\n", BRW->current->id, operations[i]);
+        if (!strcmp(operations[i], "BACKWARD")) {
+            BRW->current->forwardStack = BACKWARD(BRW);
+        }
+        if (!strcmp(operations[i], "FORWARD")) {
+            BRW->current->backwardStack = FORWARD(BRW);
+        }
+        if (!strcmp(operations[i], "PRINT")) {
+            PRINT(*BRW);
+        }
+        if (strstr(operations[i], "PRINT_HISTORY")) {
+            CutNr(operations[i], &nr);
+            PRINT_HISTORY(*BRW, nr, k);
+        }
     }
+    // printf("\n%s\n", BRW->current->backwardStack->Page->url);
+    // printf("\n%s\n", BRW->current->backwardStack->Bottom->Page->description);
     return 0;
 }

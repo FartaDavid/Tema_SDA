@@ -6,10 +6,12 @@
 browser *ALOCARE(browser *BRW) {
     BRW = (browser *)malloc(sizeof(browser));
     BRW->current = (tab *)malloc(sizeof(tab));
-    BRW->current->backwardStack = NULL;
-    BRW->current->forwardStack = NULL;
     BRW->current->currentPage = (page *)malloc(sizeof(page));
     BRW->current->currentPage->description = (char *)malloc(desclen * sizeof(char));
+    BRW->current->backwardStack = (stack *)malloc(sizeof(stack));
+    BRW->current->forwardStack = (stack *)malloc(sizeof(stack));
+    BRW->current->backwardStack = NULL;
+    BRW->current->forwardStack = NULL;
     BRW->list = (tabList *)malloc(sizeof(tabList));
     BRW->list->next = NULL;
     BRW->list->prev = NULL;
@@ -107,18 +109,121 @@ browser *NEXT (browser *BRW, browser *SANTINEL) {
     return BRW;
 }
 
-browser *PAGE (browser *BRW, page Pages[], int nrpages, int ID) {
+stack *PAGE (browser *BRW, page Pages[], int nrpages, int ID) {
+    stack *newstack = (stack *)malloc(sizeof(stack));
+    newstack->Page = BRW->current->currentPage;
     int ok = 0, i;
     for (i = 0; i < nrpages; i++) {
         if (Pages[i].id == ID) {
             ok = 1;
+            break;
         }
     }
     if (ok) {
-        // BRW->current->backwardStack->Page = (page *)malloc(sizeof(page));
-        // BRW->current->backwardStack->Page->description = (char *)malloc(strlen(Pages[i].description) * sizeof(char));
-        // BRW->current->backwardStack->Top = (stack *)malloc(sizeof(stack));
-        printf("da\n");
+        if (BRW->current->backwardStack == NULL) {
+            BRW->current->backwardStack = newstack;
+            BRW->current->backwardStack->Bottom = NULL;
+            BRW->current->backwardStack->Top = NULL;
+        }
+        else {
+            BRW->current->backwardStack->Top = newstack;
+            newstack->Bottom = BRW->current->backwardStack;
+            newstack->Top = NULL;
+        }
+        BRW->current->currentPage = &Pages[i];
+        return newstack;
+    }
+    else
+        printf("403 Forbidden\n");
+}
+
+stack *BACKWARD (browser *BRW) {
+    if (BRW->current->backwardStack != NULL) {
+        stack *newstack = (stack *)malloc(sizeof(stack));
+        newstack->Page = BRW->current->currentPage;
+        if (BRW->current->forwardStack == NULL) {
+            BRW->current->forwardStack = newstack;
+            BRW->current->forwardStack->Bottom = NULL;
+            BRW->current->forwardStack->Top = NULL;
+        }
+        else {
+            BRW->current->forwardStack->Top = newstack;
+            newstack->Bottom = BRW->current->forwardStack;
+            newstack->Top = NULL;
+        }
+        BRW->current->currentPage = BRW->current->backwardStack->Page;
+        BRW->current->backwardStack = BRW->current->backwardStack->Bottom;
+        return newstack;
+    }
+    else {
+        printf("403 Forbidden\n");
+    }
+}
+
+stack *FORWARD (browser *BRW) {
+    // printf("%s\n", BRW->current->forwardStack->Page->url);
+    if (BRW->current->forwardStack != NULL) {
+        stack *newstack = (stack *)malloc(sizeof(stack));
+        newstack->Page = BRW->current->currentPage;
+        if (BRW->current->backwardStack == NULL) {
+            BRW->current->backwardStack = newstack;
+            BRW->current->backwardStack->Bottom = NULL;
+            BRW->current->backwardStack->Top = NULL;
+        }
+        else {
+            BRW->current->backwardStack->Top = newstack;
+            newstack->Bottom = BRW->current->backwardStack;
+            newstack->Top = NULL;
+        }
+        BRW->current->currentPage = BRW->current->forwardStack->Page;
+        BRW->current->forwardStack = BRW->current->forwardStack->Bottom;
+        return newstack;
+    } else {
+        printf("403 ForbiddenLOL\n");
+    }
+}
+
+void PRINT(browser BRW) {
+    int id = BRW.current->id;
+    printf("%d ", id);
+    BRW.list = BRW.list->next;
+    BRW.current = BRW.list->currentTab;
+    while (BRW.current->id != id) {
+        if (BRW.current->id != -1)
+            printf("%d ", BRW.current->id);
+        BRW.list = BRW.list->next;
+        BRW.current = BRW.list->currentTab;
+    }
+    printf("\n%s\n", BRW.current->currentPage->description);
+}
+
+void PRINT_HISTORY(browser BRW, int nr, int k) {
+    int ok, i = 0;
+    while (BRW.current->id != nr) {
+        BRW.list = BRW.list->next;
+        BRW.current = BRW.list->currentTab;
+        i++;
+        if (i > k)
+            break;
+    }
+    if (nr == BRW.current->id) {
+        if (BRW.current->forwardStack != NULL) {
+            while (BRW.current->forwardStack->Bottom != NULL) {
+                BRW.current->forwardStack = BRW.current->forwardStack->Bottom;
+            }
+            while (BRW.current->forwardStack->Top != NULL) {
+                printf("forward %s\n", BRW.current->forwardStack->Page->url);
+                BRW.current->forwardStack = BRW.current->forwardStack->Top;
+            }
+            printf("%s\n", BRW.current->forwardStack->Page->url);
+        }
+        printf("%s\n", BRW.current->currentPage->url);
+        if (BRW.current->backwardStack != NULL) {
+            while (BRW.current->backwardStack != NULL) {
+                printf("%s\n", BRW.current->backwardStack->Page->url);
+                BRW.current->backwardStack = BRW.current->backwardStack->Bottom;
+            }
+        }
     }
     else
         printf("403 Forbidden\n");
