@@ -1,0 +1,52 @@
+==11162== 16 bytes in 1 blocks are definitely lost in loss record 1 of 23
+==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11162==    by 0x1092C3: ALOCARE (functions.h:7)
+==11162==    by 0x10A2AC: main (main.c:44)
+==11162== 
+==11162== 24 bytes in 1 blocks are definitely lost in loss record 4 of 23
+==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11162==    by 0x10931A: ALOCARE (functions.h:11)
+==11162==    by 0x10A286: main (main.c:41)
+==11162== 
+==11162== 24 bytes in 1 blocks are definitely lost in loss record 5 of 23
+==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11162==    by 0x10932F: ALOCARE (functions.h:12)
+==11162==    by 0x10A286: main (main.c:41)
+==11162== 
+==11162== 24 bytes in 1 blocks are definitely lost in loss record 6 of 23
+==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11162==    by 0x10931A: ALOCARE (functions.h:11)
+==11162==    by 0x10A2AC: main (main.c:44)
+==11162== 
+==11162== 24 bytes in 1 blocks are definitely lost in loss record 7 of 23
+==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11162==    by 0x10932F: ALOCARE (functions.h:12)
+==11162==    by 0x10A2AC: main (main.c:44)
+==11162== 
+==11162== 48 bytes in 3 blocks are definitely lost in loss record 12 of 23
+==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11162==    by 0x1092C3: ALOCARE (functions.h:7)
+==11162==    by 0x1094A4: NEW_TAB (functions.h:38)
+==11162==    by 0x10A32E: main (main.c:51)
+==11162== 
+==11162== 72 bytes in 3 blocks are definitely lost in loss record 16 of 23
+==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11162==    by 0x10931A: ALOCARE (functions.h:11)
+==11162==    by 0x1094A4: NEW_TAB (functions.h:38)
+==11162==    by 0x10A32E: main (main.c:51)
+==11162== 
+==11162== 72 bytes in 3 blocks are definitely lost in loss record 17 of 23
+==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11162==    by 0x10932F: ALOCARE (functions.h:12)
+==11162==    by 0x1094A4: NEW_TAB (functions.h:38)
+==11162==    by 0x10A32E: main (main.c:51)
+==11162== 
+==11162== 73 bytes in 3 blocks are definitely lost in loss record 18 of 23
+==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11162==    by 0x10A0DE: main (main.c:27)
+==11162== 
+==11162== 766 (16 direct, 750 indirect) bytes in 1 blocks are definitely lost in loss record 23 of 23
+==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11162==    by 0x1092C3: ALOCARE (functions.h:7)
+==11162==    by 0x10A286: main (main.c:41)
+==11162== 

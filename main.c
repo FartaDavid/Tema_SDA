@@ -6,7 +6,7 @@
 
 int main() {
     char aux[256], operations[256][256];
-    FILE *op = fopen("tema1.txt", "r");
+    FILE *op = fopen("tema6.txt", "r");
     fgets(aux, sizeof(aux), op);
     int nrpages = atoi(aux);
     page Pages[nrpages];
@@ -66,7 +66,7 @@ int main() {
             if (nr > k)
                 printf("403 Forbidden\n");
             else
-                BRW = OPEN(BRW, nr, SANTINEL);
+                BRW = OPEN(BRW, nr);
         }
         if (!strcmp(operations[i], "PREV")) {
             BRW = PREV(BRW, SANTINEL);
@@ -81,6 +81,7 @@ int main() {
         }
         if (!strcmp(operations[i], "BACKWARD")) {
             BRW->current->forwardStack = BACKWARD(BRW);
+            // printf("\nBackward: %s\n", BRW->current->backwardStack->Page->description);
         }
         if (!strcmp(operations[i], "FORWARD")) {
             BRW->current->backwardStack = FORWARD(BRW);
@@ -93,7 +94,11 @@ int main() {
             PRINT_HISTORY(*BRW, nr, k);
         }
     }
-    // printf("\n%s\n", BRW->current->backwardStack->Page->url);
+    // Dau free la memorie
+    // FREE(BRW);
+    // printf("%s\n", BRW->current->backwardStack->Top->Page->url);
+
+    printf("\n%s\n", BRW->current->forwardStack->Top->Page->url);
     // printf("\n%s\n", BRW->current->backwardStack->Bottom->Page->description);
     return 0;
 }

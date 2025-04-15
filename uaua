@@ -1,0 +1,11 @@
+CC = gcc
+CFLAGS = -g -Wall -Wextra -Werror
+TARGET = tema1
+
+build: $(TARGET)
+
+$(TARGET): main.c
+	$(CC) $(CFLAGS) -o $(TARGET) main.c
+
+clean:
+	rm -f $(TARGET) tema1.in tema1.out rezultat_valgrind.txt
