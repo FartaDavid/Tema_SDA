@@ -1,52 +1,58 @@
-==11162== 16 bytes in 1 blocks are definitely lost in loss record 1 of 23
-==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==11162==    by 0x1092C3: ALOCARE (functions.h:7)
-==11162==    by 0x10A2AC: main (main.c:44)
-==11162== 
-==11162== 24 bytes in 1 blocks are definitely lost in loss record 4 of 23
-==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==11162==    by 0x10931A: ALOCARE (functions.h:11)
-==11162==    by 0x10A286: main (main.c:41)
-==11162== 
-==11162== 24 bytes in 1 blocks are definitely lost in loss record 5 of 23
-==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==11162==    by 0x10932F: ALOCARE (functions.h:12)
-==11162==    by 0x10A286: main (main.c:41)
-==11162== 
-==11162== 24 bytes in 1 blocks are definitely lost in loss record 6 of 23
-==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==11162==    by 0x10931A: ALOCARE (functions.h:11)
-==11162==    by 0x10A2AC: main (main.c:44)
-==11162== 
-==11162== 24 bytes in 1 blocks are definitely lost in loss record 7 of 23
-==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==11162==    by 0x10932F: ALOCARE (functions.h:12)
-==11162==    by 0x10A2AC: main (main.c:44)
-==11162== 
-==11162== 48 bytes in 3 blocks are definitely lost in loss record 12 of 23
-==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==11162==    by 0x1092C3: ALOCARE (functions.h:7)
-==11162==    by 0x1094A4: NEW_TAB (functions.h:38)
-==11162==    by 0x10A32E: main (main.c:51)
-==11162== 
-==11162== 72 bytes in 3 blocks are definitely lost in loss record 16 of 23
-==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==11162==    by 0x10931A: ALOCARE (functions.h:11)
-==11162==    by 0x1094A4: NEW_TAB (functions.h:38)
-==11162==    by 0x10A32E: main (main.c:51)
-==11162== 
-==11162== 72 bytes in 3 blocks are definitely lost in loss record 17 of 23
-==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==11162==    by 0x10932F: ALOCARE (functions.h:12)
-==11162==    by 0x1094A4: NEW_TAB (functions.h:38)
-==11162==    by 0x10A32E: main (main.c:51)
-==11162== 
-==11162== 73 bytes in 3 blocks are definitely lost in loss record 18 of 23
-==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==11162==    by 0x10A0DE: main (main.c:27)
-==11162== 
-==11162== 766 (16 direct, 750 indirect) bytes in 1 blocks are definitely lost in loss record 23 of 23
-==11162==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==11162==    by 0x1092C3: ALOCARE (functions.h:7)
-==11162==    by 0x10A286: main (main.c:41)
-==11162== 
+==10587== 16 bytes in 1 blocks are definitely lost in loss record 1 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x1092E3: ALOCARE (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x10A43A: main (in /home/david/Tema_SDA/tema1)
+==10587== 
+==10587== 24 bytes in 1 blocks are definitely lost in loss record 4 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x10933A: ALOCARE (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x10A414: main (in /home/david/Tema_SDA/tema1)
+==10587== 
+==10587== 24 bytes in 1 blocks are definitely lost in loss record 5 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x10934F: ALOCARE (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x10A414: main (in /home/david/Tema_SDA/tema1)
+==10587== 
+==10587== 24 bytes in 1 blocks are definitely lost in loss record 6 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x10933A: ALOCARE (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x10A43A: main (in /home/david/Tema_SDA/tema1)
+==10587== 
+==10587== 24 bytes in 1 blocks are definitely lost in loss record 7 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x10934F: ALOCARE (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x10A43A: main (in /home/david/Tema_SDA/tema1)
+==10587== 
+==10587== 64 bytes in 4 blocks are definitely lost in loss record 16 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x1092E3: ALOCARE (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x1094C4: NEW_TAB (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x10A4BC: main (in /home/david/Tema_SDA/tema1)
+==10587== 
+==10587== 96 bytes in 4 blocks are definitely lost in loss record 18 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x10933A: ALOCARE (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x1094C4: NEW_TAB (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x10A4BC: main (in /home/david/Tema_SDA/tema1)
+==10587== 
+==10587== 96 bytes in 4 blocks are definitely lost in loss record 19 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x10934F: ALOCARE (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x1094C4: NEW_TAB (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x10A4BC: main (in /home/david/Tema_SDA/tema1)
+==10587== 
+==10587== 197 bytes in 12 blocks are definitely lost in loss record 22 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x10A262: main (in /home/david/Tema_SDA/tema1)
+==10587== 
+==10587== 324 (64 direct, 260 indirect) bytes in 2 blocks are definitely lost in loss record 24 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x1092F1: ALOCARE (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x1094C4: NEW_TAB (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x10A4BC: main (in /home/david/Tema_SDA/tema1)
+==10587== 
+==10587== 832 (16 direct, 816 indirect) bytes in 1 blocks are definitely lost in loss record 27 of 27
+==10587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10587==    by 0x1092E3: ALOCARE (in /home/david/Tema_SDA/tema1)
+==10587==    by 0x10A414: main (in /home/david/Tema_SDA/tema1)
+==10587== 

@@ -6,7 +6,7 @@
 
 int main() {
     char aux[256], operations[256][256];
-    FILE *op = fopen("tema6.txt", "r");
+    FILE *op = fopen("tema1.in", "r"), *of = fopen("tema1.out", "w");
     fgets(aux, sizeof(aux), op);
     int nrpages = atoi(aux);
     page Pages[nrpages];
@@ -36,7 +36,7 @@ int main() {
             operations[i][strlen(operations[i]) - 1] = '\0';
     }
     //  Incep sa initializez/aloc dinamic browserul si santinela
-    int k = 1, nr;
+    int k = 0, nr, nr_tabs = 1;
     browser *BRW = NULL, *SANTINEL = NULL;
     SANTINEL = ALOCARE(SANTINEL);
     SANTINEL->current->id = -1;
@@ -45,28 +45,31 @@ int main() {
     BRW = HEAD (BRW, SANTINEL);
     for (int i = 0; i < nrop; i++) {
         //  Fac un Tab nou  
-        // printf("%d %s\n", BRW->current->id, operations[i]);
-        // printf("%s\n\n", BRW->current->currentPage->url);
         if (!strcmp(operations[i], "NEW_TAB")) {
-            BRW = NEW_TAB(BRW, SANTINEL, k);
+            BRW = NEW_TAB(BRW, SANTINEL, nr_tabs);
+            nr_tabs++;
             k++;
         }
         if (!strcmp(operations[i], "CLOSE")) {
             k--;
-            if (k == 1) {
-                printf("403 Forbidden\n");
-                break;
+            // if (k < 0)
+            //     k = 0;
+            if (k == 0) {
+                fprintf(of, "403 Forbidden\n");
             }
             else {
                 BRW->list = CLOSE(BRW->list, SANTINEL);
+                BRW->current = BRW->list->currentTab;
             }
         }
         if (strstr(operations[i], "OPEN")) {
             CutNr(operations[i], &nr);
-            if (nr > k)
-                printf("403 Forbidden\n");
-            else
+            if (nr > k || nr_tabs == 1)
+                fprintf(of, "403 Forbidden\n");
+            else {
+                // printf("%d %d\n", nr, k);
                 BRW = OPEN(BRW, nr);
+            }
         }
         if (!strcmp(operations[i], "PREV")) {
             BRW = PREV(BRW, SANTINEL);
@@ -80,25 +83,28 @@ int main() {
             // printf("%s\n", BRW->current->backwardStack->Page->description);
         }
         if (!strcmp(operations[i], "BACKWARD")) {
-            BRW->current->forwardStack = BACKWARD(BRW);
+            BRW->current->forwardStack = BACKWARD(BRW, of);
             // printf("\nBackward: %s\n", BRW->current->backwardStack->Page->description);
         }
         if (!strcmp(operations[i], "FORWARD")) {
-            BRW->current->backwardStack = FORWARD(BRW);
+            BRW->current->backwardStack = FORWARD(BRW, of);
         }
         if (!strcmp(operations[i], "PRINT")) {
-            PRINT(*BRW);
+            // printf("%d\n", BRW->current->id);
+            PRINT(*BRW, of);
         }
         if (strstr(operations[i], "PRINT_HISTORY")) {
             CutNr(operations[i], &nr);
-            PRINT_HISTORY(*BRW, nr, k);
+            PRINT_HISTORY(*BRW, nr, k, of);
         }
+        // printf("%d %d %s\n", k, BRW->current->id, operations[i]);
+        // printf("%s\n%s\n\n", BRW->current->backwardStack->Page->url, operations[i]);
     }
     // Dau free la memorie
     // FREE(BRW);
     // printf("%s\n", BRW->current->backwardStack->Top->Page->url);
 
-    printf("\n%s\n", BRW->current->forwardStack->Top->Page->url);
-    // printf("\n%s\n", BRW->current->backwardStack->Bottom->Page->description);
+    // printf("\n%s\n", BRW->current->backwardStack->Page->url);
+    // printf("\n%s\n", BRW->current->backwardStack->Page->description);
     return 0;
 }

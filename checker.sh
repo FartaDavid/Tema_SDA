@@ -63,6 +63,7 @@ function testInput() {
     local ref_file="tests/ref/${file_name%.in}.ref"
 
     cat "$file" > tema1.in
+    dos2unix -q tema1.in
     timeout 10s ./tema1 < tema1.in > tema1.out
 
     if [ "$?" -eq 139 ]; then
@@ -70,7 +71,7 @@ function testInput() {
         return
     fi
 
-    if ! diff -w -B "$ref_file" tema1.out > /dev/null 2>&1; then
+    if ! diff -B -Z --strip-trailing-cr "$ref_file" tema1.out > /dev/null 2>&1; then
         echo "$file_name: 0/${POINTS[$test_index-1]}"
     else
         echo "$file_name: ${POINTS[$test_index-1]}/${POINTS[$test_index-1]}"
